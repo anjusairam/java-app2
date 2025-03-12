@@ -8,9 +8,12 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
+    <name>Java Docker App</name>
+    <description>A simple Spring Boot application running in Docker</description>
+
     <properties>
-        <java.version>11</java.version>  <!-- Set Java version -->
-        <spring-boot.version>2.7.5</spring-boot.version>  <!-- Define Spring Boot version -->
+        <java.version>11</java.version>
+        <spring-boot.version>2.7.5</spring-boot.version>
     </properties>
 
     <dependencies>
@@ -24,7 +27,7 @@
 
     <build>
         <plugins>
-            <!-- Maven Compiler Plugin to set Java version -->
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -35,15 +38,40 @@
                 </configuration>
             </plugin>
 
+            <!-- Maven Jar Plugin to define the Main-Class -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.example.DemoApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
             <!-- Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
 </project>
-
-
-   
