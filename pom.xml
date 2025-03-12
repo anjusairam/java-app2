@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <java.version>11</java.version>  <!-- Set your Java version -->
+        <java.version>11</java.version>  <!-- Set Java version -->
         <spring-boot.version>2.7.5</spring-boot.version>  <!-- Define Spring Boot version -->
     </properties>
 
@@ -18,18 +18,32 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot.version}</version>  <!-- Version defined in properties -->
+            <version>${spring-boot.version}</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Maven Compiler Plugin to set Java version -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
             <!-- Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>  <!-- Version defined in properties -->
+                <version>${spring-boot.version}</version>
             </plugin>
         </plugins>
     </build>
 </project>
+
+
+   
