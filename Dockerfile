@@ -2,9 +2,10 @@ FROM openjdk:11-jdk-slim
 
 WORKDIR /app
 
-COPY target/myapp.jar app.jar
+COPY target/java-docker-app-1.0.jar app.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "app.jar"]
+# Correct entrypoint for Spring Boot JAR
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 
